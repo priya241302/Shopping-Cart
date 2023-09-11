@@ -155,7 +155,7 @@
       <url>http://34.226.195.5:8081/repository/ekart/</url>
     </repository>
     <snapshotRepository>
-      <id>ekart-snapshot/</id>
+      <id>ekart-snapshot</id>
       <name>ekart-snapshot</name>
       <url>http://34.226.195.5:8081/repository/ekart-snapshot/</url>
     </snapshotRepository>
