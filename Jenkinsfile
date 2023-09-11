@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools{
-        jdk  'jdk11'
+        jdk  'jdk17'
         maven  'maven3'
     }
     
@@ -48,11 +48,11 @@ pipeline {
         stage('Docker Build & Push') {
             steps {
                 script{
-                    withDockerRegistry(credentialsId: '2fe19d8a-3d12-4b82-ba20-9d22e6bf1672', toolName: 'docker') {
+                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker') {
                         
                         sh "docker build -t shopping-cart -f docker/Dockerfile ."
-                        sh "docker tag  shopping-cart priya247/shopping-cart:latest"
-                        sh "docker push priya247/shopping-cart:latest"
+                        sh "docker tag  shopping-cart priya247/shopping-cart1:latest"
+                        sh "docker push priya247/shopping-cart1:latest"
                     }
                 }
             }
