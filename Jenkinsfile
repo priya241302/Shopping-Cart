@@ -44,6 +44,15 @@ pipeline {
                 sh "mvn clean package -DskipTests=true"
             }
         }
+        stage('Docker Build & Push') {
+            steps{
+        configFileProvider([configFile(fileId: '31ac675d-b088-4be0-9350-94ae0981756c', variable: 'mavensettings')]) {
+                  
+                  sh "mvn -s $mavensettings clean deploy -DskipTests=true"
+                  
+                }
+            }
+        }
         
         stage('Docker Build & Push') {
             steps {
