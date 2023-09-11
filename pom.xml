@@ -152,7 +152,7 @@
     <repository>
       <id>ekart</id>
       <name>ekart</name>
-      <ur>http://184.72.154.165:8081/repository/ekart/</url>
+      <url>http://184.72.154.165:8081/repository/ekart/</url>
     </repository>
     <snapshotRepository>
       <id>ekart-snapshot/</id>
