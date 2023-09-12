@@ -62,6 +62,6 @@ pipeline {
                 build job: 'ekart-cd', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
         }
-    }
+    
   }
 }
