@@ -56,26 +56,9 @@ pipeline {
         }
       }
     }
-     stage('Update Deployment File') {
-        environment {
-            GIT_REPO_NAME = "Shopping-Cart"
-            GIT_USER_NAME = "priya241302"
-        }
-        steps {
-            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh '''
-                    git config user.email "haripriyapogaku@gmail.com"
-                    git config user.name "priya241302"
-                    BUILD_NUMBER=${BUILD_NUMBER}
-                    # Clean up build artifacts and untracked files
-                    git clean -df
-                    git reset --hard HEAD
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifest/deploymentservice.yml
-                    git add manifest/deploymentservice.yml
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                '''
-            }
+     stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'ekart-cd', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
     }
   }
