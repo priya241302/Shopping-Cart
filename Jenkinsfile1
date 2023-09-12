@@ -63,7 +63,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "haripriyapogu@gmail.com"
+                    git config user.email "haripriyapogaku@gmail.com"
                     git config user.name "priya241302"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     # Clean up build artifacts and untracked files
