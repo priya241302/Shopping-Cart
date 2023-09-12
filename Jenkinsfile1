@@ -57,8 +57,10 @@ pipeline {
       }
     }
      stage('Trigger ManifestUpdate') {
+      steps{
                 echo "triggering updatemanifestjob"
                 build job: 'ekart-cd', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+        }
         }
     }
   }
