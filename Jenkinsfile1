@@ -68,8 +68,7 @@ pipeline {
                     git config user.name "priya241302"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     # Clean up build artifacts and untracked files
-                    git clean -df
-                    git reset --hard HEAD
+                   
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifest/deploymentservice.yml
                     git add manifest/deploymentservice.yml 
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
