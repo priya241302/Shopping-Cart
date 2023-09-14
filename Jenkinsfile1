@@ -68,11 +68,16 @@ pipeline {
                     git config user.name "priya241302"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     # Clean up build artifacts and untracked files
-                   
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifest/deploymentservice.yml
-                    git add manifest/deploymentservice.yml 
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    sh "cat manifest/deploymentservice.yml"
+                    sh "sed -i 's+priya247/shoppingcart.*+priya247/shoppingcart:${BUILD_NUMBER}+g' deploymentservice.yml"
+                    sh "cat manifest/deploymentservice.yml"
+                    sh "git add ."
+                    sh "git commit -m 'By Jenkins Job changemanifest: ${BUILD_NUMBER}'"
+                  
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+
+
+
                 '''
             }
         }
